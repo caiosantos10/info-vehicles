@@ -7,8 +7,8 @@ export const routes: Routes = [
     {
         path: 'vehicles', children: [
             { path: 'list', component: VehiclesListComponent },
-            { path: 'register-vehicle', component: VehiclesFormComponent },
-            { path: 'edit-vehicle', component: VehiclesFormComponent },
+            { path: 'register', component: VehiclesFormComponent },
+            { path: 'edit', component: VehiclesFormComponent },
             { path: '', redirectTo: 'list', pathMatch: 'prefix' },
         ]
     },

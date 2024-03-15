@@ -28,7 +28,6 @@ export class SidebarComponent implements OnInit {
       ? { ...item, isActive: true }
       : { ...item, isActive: false }
     )
-    console.log(this.menuItems)
   }
 
   private setMenuItemByPath() {

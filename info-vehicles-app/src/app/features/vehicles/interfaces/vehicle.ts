@@ -5,5 +5,6 @@ export interface Vehicle {
     renavam: string,
     modelo: string,
     marca: string,
-    ano: string
+    ano: string,
+    showActions: boolean;
 }
