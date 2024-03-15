@@ -1,9 +1,12 @@
-app-sidebar {
-    position: fixed;
-    height: 100%;
-    left: 0;
+.info-vehicles-app {
+    .sidebar {
+        position: fixed;
+        height: 100%;
+        left: 0;
+        z-index: 100;
 
-    > div {
-        height: inherit;
+        >div {
+            height: inherit;
+        }
     }
 }

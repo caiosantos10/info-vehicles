@@ -4,6 +4,7 @@ import { VehiclesListComponent } from './features/vehicles/components/vehicles-l
 import { VehiclesFormComponent } from './features/vehicles/components/vehicles-form/vehicles-form.component';
 import { NotFoundPageComponent } from './shared/components/not-found-page/not-found-page.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { MenuItem } from './shared/components/sidebar/interfaces/MenuItem';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +14,10 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'info-vehicles-app';
+  menuItems: MenuItem[] = [
+    { path: '/vehicles/list', title: 'Vehicles List', isActive: false },
+    { path: '/so-para-ornamentar-menu', title: 'Dashboard', isActive: false },
+    { path: '/so-para-ornamentar-menu', title: 'Orders', isActive: false },
+    { path: '/so-para-ornamentar-menu', title: 'Customers', isActive: false },
+  ]
 }

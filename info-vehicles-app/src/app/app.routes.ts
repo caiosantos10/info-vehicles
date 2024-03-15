@@ -4,9 +4,14 @@ import { VehiclesFormComponent } from './features/vehicles/components/vehicles-f
 import { NotFoundPageComponent } from './shared/components/not-found-page/not-found-page.component';
 
 export const routes: Routes = [
-    { path: 'vehicles', component: VehiclesListComponent },
-    { path: 'register-vehicle', component: VehiclesFormComponent },
-    { path: 'edit-vehicle', component: VehiclesFormComponent },
+    {
+        path: 'vehicles', children: [
+            { path: 'list', component: VehiclesListComponent },
+            { path: 'register-vehicle', component: VehiclesFormComponent },
+            { path: 'edit-vehicle', component: VehiclesFormComponent },
+            { path: '', redirectTo: 'list', pathMatch: 'prefix' },
+        ]
+    },
     { path: '', redirectTo: 'vehicles', pathMatch: 'full' },
     { path: '**', component: NotFoundPageComponent }
 ];

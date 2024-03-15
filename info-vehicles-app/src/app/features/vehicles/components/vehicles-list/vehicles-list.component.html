@@ -1,1 +1,24 @@
-<p>vehicles-list works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Placa</th>
+            <th scope="col">Chassi</th>
+            <th scope="col">Renavam</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Ano</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let vehicle of $vehicles | async">
+            <td>{{ vehicle.placa }}</td>
+            <td>{{ vehicle.chassi }}</td>
+            <td>{{ vehicle.renavam }}</td>
+            <td>{{ vehicle.modelo }}</td>
+            <td>{{ vehicle.marca }}</td>
+            <td>{{ vehicle.ano }}</td>
+            <th scope="row">1</th>
+        </tr>
+    </tbody>
+</table>

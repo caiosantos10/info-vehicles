@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { VehiclesService } from '../../services/vehicles.service';
-
 @Component({
   selector: 'app-vehicles-form',
   standalone: true,
@@ -10,6 +9,7 @@ import { VehiclesService } from '../../services/vehicles.service';
   templateUrl: './vehicles-form.component.html',
   styleUrl: './vehicles-form.component.scss'
 })
-export class VehiclesFormComponent {
+export class VehiclesFormComponent  {
+  
 
 }
