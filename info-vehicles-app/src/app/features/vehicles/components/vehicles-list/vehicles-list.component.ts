@@ -17,8 +17,7 @@ import { RouterModule } from '@angular/router';
 export class VehiclesListComponent implements OnInit {
   @ViewChild('actionsCol') actionsCol!: ElementRef;
 
-  vehicles!: Vehicle[];
-  private subscription!: Subscription;
+  vehicles: Vehicle[] = [];
 
   constructor(private vehiclesService: VehiclesService) { }
 
@@ -26,19 +25,15 @@ export class VehiclesListComponent implements OnInit {
     this.getVehicles();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
   getVehicles(): void {
-    this.subscription = this.vehiclesService
+    this.vehiclesService
       .getVehicles()
       .pipe(tap(vehicle => vehicle.map(item => item = { ...item, showActions: false })))
-      .subscribe(vehicles => this.vehicles = vehicles);
+      .subscribe(vehicles => this.vehicles = vehicles as Vehicle[]);
   }
 
-  deleteVehicle(): void {
-
+  deleteVehicle(id: string): void {
+    this.vehiclesService.deleteVehicle(id).subscribe();
   }
 
   clickActionsMenu(item: Vehicle) {
