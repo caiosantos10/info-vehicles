@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { VehiclesListComponent } from './features/vehicles/components/vehicles-list/vehicles-list.component';
 import { VehiclesFormComponent } from './features/vehicles/components/vehicles-form/vehicles-form.component';
 import { NotFoundPageComponent } from './shared/components/not-found-page/not-found-page.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, VehiclesListComponent, VehiclesFormComponent, NotFoundPageComponent],
+  imports: [RouterOutlet, VehiclesListComponent, VehiclesFormComponent, NotFoundPageComponent, SidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
