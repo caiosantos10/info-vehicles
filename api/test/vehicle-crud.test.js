@@ -1,20 +1,18 @@
-import * as chai from 'chai';
+import { vehicle } from '../models/Vehicle.js';
 import server from '../server.js'
+import { use, expect } from 'chai';
+import chaiHttp from 'chai-http';
 
-import('chai-http').then((chaiHttp) => {
+const chai = use(chaiHttp);
 
-    chai.use(chaiHttp);
-    const expect = chai.expect;
-
-    describe('Vehicle CRUD Test', () => {
-        it('should get one list of all vehicles', (done) => {
-            chai.request(server)
-                .get('/vehicles')
-                .end((err, res) => {
-                    expect(err).to.be.null;
-                    expect(res.body).to.have.lengthOf.above(0);
-                    done();
-                });
-        });
+describe('Vehicle CRUD Test', () => {
+    it('should get one list of all vehicles', (done) => {
+        chai.request(server)
+            .get('/vehicles')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.body).to.have.lengthOf.above(0)
+                done();
+            });
     });
 });
