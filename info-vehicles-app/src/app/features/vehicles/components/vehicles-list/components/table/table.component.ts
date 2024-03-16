@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { CapitalizePipe } from '../../utils/capitalize.pipe';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CapitalizePipe } from '../../../../../../shared/utils/capitalize.pipe';
 
 @Component({
   selector: 'app-table',
