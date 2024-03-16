@@ -1,4 +1,8 @@
-import "dotenv/config.js";
+import dotenv from 'dotenv';
+dotenv.config({
+  path: `.env.${process.env.NODE_ENV}`
+});
+
 import express from 'express';
 import cors from 'cors';
 import connectOnDatabase from './config/db_config.js';
