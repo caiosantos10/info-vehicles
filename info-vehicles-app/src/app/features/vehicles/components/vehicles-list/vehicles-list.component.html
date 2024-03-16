@@ -1,38 +1,10 @@
 <div class="vehicles-list">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Placa</th>
-                <th scope="col">Chassi</th>
-                <th scope="col">Renavam</th>
-                <th scope="col">Modelo</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Ano</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let vehicle of vehicles">
-                <td>{{ vehicle.placa }}</td>
-                <td>{{ vehicle.chassi }}</td>
-                <td>{{ vehicle.renavam }}</td>
-                <td>{{ vehicle.modelo }}</td>
-                <td>{{ vehicle.marca }}</td>
-                <td>{{ vehicle.ano }}</td>
-                <td #actionsCol>
-                    <button id="actionButton" (click)="clickActionsMenu(vehicle)" class="action-btn">
-                        <i class="bi bi-three-dots-vertical"></i>
-                    </button>
-                    <div class="actions-menu" [ngClass]="{'show': vehicle.showActions}">
-                        <a routerLink="/vehicles/register">Editar</a>
-                        <a (click)="deleteVehicle(vehicle._id)">Excluir</a>
-                    </div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <div *ngIf="vehicles.length == 0" class="alert alert-warning" role="alert">
-        Não há nenhum veículo cadastrado
-    </div>
+    <app-table
+        [items]="vehicles"
+        [columns]="attributes"
+        (delete)="deleteVehicle($event)"
+        (edit)="editVehicle($event)"
+    >
+        <p class="empty-message">Não há nenhum veículo cadastrado</p>
+    </app-table>
 </div>

@@ -1,0 +1,1 @@
+export const COLUMNS = ['placa', 'chassi', 'renavam', 'modelo', 'marca', 'ano']
