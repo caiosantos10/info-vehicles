@@ -5,10 +5,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { Vehicle } from '../../interfaces/vehicle';
 import { tap } from 'rxjs';
+import { NgxMaskDirective } from 'ngx-mask';
+
 @Component({
   selector: 'app-vehicles-form',
   standalone: true,
-  imports: [HttpClientModule, ReactiveFormsModule, CommonModule],
+  imports: [HttpClientModule, ReactiveFormsModule, CommonModule, NgxMaskDirective],
   providers: [VehiclesService],
   templateUrl: './vehicles-form.component.html',
   styleUrl: './vehicles-form.component.scss'
@@ -35,7 +37,7 @@ export class VehiclesFormComponent implements OnInit {
 
   onSubmit() {
     const vehicle = this.form.value as Vehicle;
-    console.log(vehicle)
+    vehicle.placa.toLocaleUpperCase();
     this.vehiclesService.registerVehicle(vehicle)
       .pipe(tap(vehicle => console.log(vehicle)))
       .subscribe();
