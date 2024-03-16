@@ -1,13 +1,11 @@
 .vehicles-form {
     margin-top: 3rem;
     .button-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         position: relative;
 
         .submit-button {
             position: absolute;
+            top: 1.9rem;
         }
     }
 

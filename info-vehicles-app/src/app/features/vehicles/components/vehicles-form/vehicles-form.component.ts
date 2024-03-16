@@ -4,8 +4,9 @@ import { VehiclesService } from '../../services/vehicles.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Vehicle } from '../../interfaces/vehicle';
-import { tap } from 'rxjs';
+import { concatMap, of, tap } from 'rxjs';
 import { NgxMaskDirective } from 'ngx-mask';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vehicles-form',
@@ -17,11 +18,38 @@ import { NgxMaskDirective } from 'ngx-mask';
 })
 export class VehiclesFormComponent implements OnInit {
   form!: FormGroup;
+  private id!: string;
+  editEnable = false;
 
-  constructor(private fb: FormBuilder, private vehiclesService: VehiclesService) { }
+  constructor(
+    private fb: FormBuilder,
+    private vehiclesService: VehiclesService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.editEnable = false;
     this.formBuilder();
+    this.fillFormByIdParam();
+  }
+
+
+  private fillFormByIdParam() {
+    this.route.paramMap
+      .pipe(
+        tap(params => this.id = params.get('id') as string),
+        concatMap(params => this.findVehicleById(params.get('id') as string)),
+      ).subscribe(vehicles => {
+        if (this.id) {
+          this.form.patchValue(vehicles);
+          this.editEnable = true;
+        }
+      });
+  }
+
+  private findVehicleById(id: string) {
+    if (!id) return of();
+    return this.vehiclesService.getVehicleById(id);
   }
 
   private formBuilder(): void {
@@ -35,11 +63,32 @@ export class VehiclesFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  private register(): void {
     const vehicle = this.form.value as Vehicle;
-    vehicle.placa.toLocaleUpperCase();
+    vehicle.placa
+      .replace(/[^a-zA-Z0-9]/g, '')
+      .toLocaleUpperCase();
+
     this.vehiclesService.registerVehicle(vehicle)
       .pipe(tap(vehicle => console.log(vehicle)))
       .subscribe();
+  }
+
+  private update(): void {
+    const vehicle = this.form.value as Vehicle;
+    vehicle.placa.toLocaleUpperCase();
+    this.vehiclesService.updateVehicle(this.id, vehicle)
+      .pipe(tap(vehicle => console.log(vehicle)))
+      .subscribe();
+  }
+  
+  onSubmit(): void {
+    if (!this.form.valid) return
+    if (!!this.id) {
+      this.update();
+    } else {
+      this.register();
+    }
+
   }
 }

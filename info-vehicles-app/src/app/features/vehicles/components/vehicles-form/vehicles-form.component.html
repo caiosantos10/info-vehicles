@@ -4,31 +4,36 @@
         <div class="col-2 mb-3">
             <label class="form-label">Placa</label>
             <input [mask]="'AAA-0000'" formControlName="placa" type="text" class="form-control" required>
-            <div *ngIf="form.get('placa')!.invalid && form.get('placa')!.touched " class="text-danger">Informe a placa</div>
+            <div *ngIf="form.get('placa')!.invalid && form.get('placa')!.touched " class="text-danger">Informe a placa
+            </div>
         </div>
         <div class="col-6 mb-3">
             <label class="form-label">Chassi</label>
             <input formControlName="chassi" type="text" class="form-control">
-            <div *ngIf="form.get('chassi')!.invalid && form.get('chassi')!.touched " class="text-danger">Informe o chassi</div>
+            <div *ngIf="form.get('chassi')!.invalid && form.get('chassi')!.touched " class="text-danger">Informe o
+                chassi</div>
         </div>
     </div>
     <div class="row">
         <div class="col-6 mb-3">
             <label class="form-label">Renavam</label>
             <input formControlName="renavam" type="text" class="form-control">
-            <div *ngIf="form.get('renavam')!.invalid && form.get('renavam')!.touched " class="text-danger">Informe o renavam</div>
+            <div *ngIf="form.get('renavam')!.invalid && form.get('renavam')!.touched " class="text-danger">Informe o
+                renavam</div>
         </div>
         <div class="col-3 mb-3">
             <label class="form-label">Modelo</label>
             <input formControlName="modelo" type="text" class="form-control">
-            <div *ngIf="form.get('modelo')!.invalid && form.get('modelo')!.touched " class="text-danger">Informe o modelo</div>
+            <div *ngIf="form.get('modelo')!.invalid && form.get('modelo')!.touched " class="text-danger">Informe o
+                modelo</div>
         </div>
     </div>
     <div class="row">
         <div class="col-3 mb-3">
             <label class="form-label">Marca</label>
             <input formControlName="marca" type="text" class="form-control">
-            <div *ngIf="form.get('marca')!.invalid && form.get('marca')!.touched " class="text-danger">Informe a marca</div>
+            <div *ngIf="form.get('marca')!.invalid && form.get('marca')!.touched " class="text-danger">Informe a marca
+            </div>
         </div>
         <div class="col-3 mb-3">
             <label class="form-label">Ano</label>
@@ -36,7 +41,9 @@
             <div *ngIf="form.get('ano')!.invalid && form.get('ano')!.touched " class="text-danger">Informe o ano</div>
         </div>
         <div class="col-2 button-wrapper">
-            <button [disabled]="form.invalid" type="submit" class="btn btn-primary submit-button">Cadastrar</button>
+            <button [disabled]="form.invalid" type="submit" class="btn btn-primary submit-button">
+                {{ editEnable ? 'Editar' : 'Cadastrar' }}
+            </button>
         </div>
     </div>
 </form>
