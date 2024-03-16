@@ -15,7 +15,7 @@ import { MenuItem } from './shared/components/sidebar/interfaces/MenuItem';
 })
 export class AppComponent {
   menuItems: MenuItem[] = [
-    { path: '/vehicles/list', title: 'Listar Veíuclos', isActive: false },
+    { path: '/vehicles/list', title: 'Listar Veículos', isActive: false },
     { path: '/vehicles/register', title: 'Cadastrar Veículo', isActive: false },
     { path: '/dashboard-para-ornamentar-menu', title: 'Dashboard', isActive: false },
     { path: '/orders-para-ornamentar-menu', title: 'Orders', isActive: false },
