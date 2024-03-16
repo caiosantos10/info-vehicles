@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const vehicleSchema = new mongoose.Schema({
+    id: { type: mongoose.Schema.Types.ObjectId },
     placa: {
         type: String,
         required: true,
