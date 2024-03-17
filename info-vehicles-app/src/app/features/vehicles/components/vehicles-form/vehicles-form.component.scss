@@ -1,6 +1,20 @@
 .vehicles-form {
     margin-top: 1.4rem;
 
+    &-section {
+        position: relative;
+
+        .spinner-border {
+            position: absolute;
+            top: 11rem;
+            left: 20rem;
+        }
+
+        .form-opacity {
+            opacity: 0.7;
+        }
+    }
+
     .button-wrapper {
         position: relative;
 

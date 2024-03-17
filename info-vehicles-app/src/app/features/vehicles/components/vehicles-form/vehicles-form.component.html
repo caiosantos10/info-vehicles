@@ -1,7 +1,10 @@
 <div class="vehicles-form-section">
     <h1>Cadastrar Veículo</h1>
     <div class="shadow-line"></div>
-    <form class="vehicles-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <form class="vehicles-form" [formGroup]="form" (ngSubmit)="onSubmit()" [ngClass]="isLoading? 'form-opacity': ''">
         <div class="row">
             <div class="col-2 mb-3">
                 <label class="form-label">Placa</label>

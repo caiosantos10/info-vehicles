@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Vehicle } from '../../interfaces/vehicle';
 import { concatMap, of, tap } from 'rxjs';
 import { NgxMaskDirective } from 'ngx-mask';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehicles-form',
@@ -20,11 +20,13 @@ export class VehiclesFormComponent implements OnInit {
   form!: FormGroup;
   private id!: string;
   editEnable = false;
+  isLoading = false;
 
   constructor(
     private fb: FormBuilder,
     private vehiclesService: VehiclesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class VehiclesFormComponent implements OnInit {
   }
 
   private register(): void {
+    this.isLoading = true;
     const vehicle = this.form.value as Vehicle;
     vehicle.placa
       .replace(/[^a-zA-Z0-9]/g, '')
@@ -71,15 +74,16 @@ export class VehiclesFormComponent implements OnInit {
 
     this.vehiclesService.registerVehicle(vehicle)
       .pipe(tap(vehicle => console.log(vehicle)))
-      .subscribe();
+      .subscribe(() => this.isLoading = false);
   }
 
   private update(): void {
+    this.isLoading = true;
     const vehicle = this.form.value as Vehicle;
     vehicle.placa.toLocaleUpperCase();
     this.vehiclesService.updateVehicle(this.id, vehicle)
       .pipe(tap(vehicle => console.log(vehicle)))
-      .subscribe();
+      .subscribe(() => this.isLoading = false);
   }
   
   onSubmit(): void {
@@ -90,5 +94,6 @@ export class VehiclesFormComponent implements OnInit {
       this.register();
     }
 
+    this.router.navigateByUrl('/vehicles/list')
   }
 }
