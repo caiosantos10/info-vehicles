@@ -44,7 +44,7 @@ class vehiclesController {
                 return;
             }
             const deleteVehicle = await VehicleModel.findByIdAndDelete(id);
-            res.status(200).json({ deleteVehicle, msg: "vehicle successfully removed" });
+            res.status(200).json({ msg: "Vehicle deleted successfully" });
         } catch (error) {
             console.log(error);
         }
@@ -59,7 +59,7 @@ class vehiclesController {
                 res.status(404).json({ msg: "Vehicle not found" });
                 return;
             }
-            res.status(200).json({ response, msg: "vehicle successfully updated" });
+            res.status(200).json({ msg: "Vehicle successfully updated" });
         } catch (error) {
             console.log(error);
         }
