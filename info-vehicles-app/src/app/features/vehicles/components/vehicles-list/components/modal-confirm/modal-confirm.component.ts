@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-modal-confirm',
@@ -9,13 +10,12 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from
   styleUrl: './modal-confirm.component.scss'
 })
 export class ModalConfirmComponent {
-  @Input() confirmAction!: () => void;
+  private confirmAction!: Observable<any>;
   show = false;
 
-  constructor(private ef: ElementRef) { }
-
-  openModal() {
+  openModal(fn: Observable<any>) {
     this.show = true;
+    this.confirmAction = fn;
   }
 
   closeModal() {
@@ -23,7 +23,7 @@ export class ModalConfirmComponent {
   }
 
   confirm() {
-    this.confirmAction();
+    this.confirmAction.subscribe();
     this.closeModal();
   }
 }

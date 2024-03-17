@@ -7,7 +7,7 @@ import { Router, RouterModule } from '@angular/router';
 import { TableComponent } from './components/table/table.component';
 import { tap } from 'rxjs';
 import { COLUMNS } from './utils/constants';
-import { ModalConfirmComponent } from '../../../../shared/components/modal-confirm/modal-confirm.component';
+import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-vehicles-list',
@@ -41,15 +41,18 @@ export class VehiclesListComponent implements OnInit {
   }
 
   deleteVehicle(id: string): void {
-    this.modalConfirmComponent.openModal();    
+    this.isLoading = true;
+    this.modalConfirmComponent
+      .openModal(this.vehiclesService.deleteVehicle(id)
+        .pipe(
+          tap(() => {
+            this.isLoading = false;
+            this.getVehicles();
+          }),
+        ));
   }
 
   editVehicle(id: string): void {
     this.router.navigateByUrl(`vehicles/edit/${id}`);
   }
-
-  confirmAction = () => {
-    // this.vehiclesService.deleteVehicle(id).subscribe();
-    console.log('confirmado')
-  };
 }
