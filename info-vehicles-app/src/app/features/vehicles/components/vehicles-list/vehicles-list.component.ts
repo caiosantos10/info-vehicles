@@ -19,6 +19,7 @@ import { COLUMNS } from './utils/constants';
 export class VehiclesListComponent implements OnInit {
   readonly attributes = COLUMNS;
   vehicles: Vehicle[] = [];
+  isLoading = false;
 
   constructor(private vehiclesService: VehiclesService, private router: Router) { }
 
@@ -27,10 +28,14 @@ export class VehiclesListComponent implements OnInit {
   }
 
   getVehicles(): void {
+    this.isLoading = true;
     this.vehiclesService
       .getVehicles()
       .pipe(tap(vehicle => vehicle.map(item => item = { ...item, showActions: false })))
-      .subscribe(vehicles => this.vehicles = vehicles as Vehicle[]);
+      .subscribe(vehicles => {
+        this.vehicles = vehicles as Vehicle[]
+        this.isLoading = false;
+      });
   }
 
   deleteVehicle(id: string): void {

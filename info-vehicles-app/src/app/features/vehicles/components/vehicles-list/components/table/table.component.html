@@ -18,6 +18,4 @@
 
     </tbody>
 </table>
-<div *ngIf="items.length == 0" class="alert alert-warning" role="alert">
-    <ng-content select=".empty-message"></ng-content>
-</div>
+<ng-content *ngIf="items.length == 0" select=".empty-message"></ng-content>

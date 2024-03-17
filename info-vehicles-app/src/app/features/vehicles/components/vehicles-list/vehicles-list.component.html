@@ -1,7 +1,12 @@
 <h1>Veículos</h1>
 <div class="shadow-line"></div>
 <div class="vehicles-list">
+    <div *ngIf="isLoading" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
     <app-table [items]="vehicles" [columns]="attributes" (delete)="deleteVehicle($event)" (edit)="editVehicle($event)">
-        <p class="empty-message">Não há nenhum veículo cadastrado</p>
+        <div *ngIf="!isLoading" class="alert alert-warning empty-message" role="alert">
+            <p>Não há nenhum veículo cadastrado</p>
+        </div>
     </app-table>
 </div>

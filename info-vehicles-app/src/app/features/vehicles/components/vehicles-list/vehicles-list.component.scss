@@ -6,5 +6,12 @@
 }
 
 .vehicles-list {
+    position: relative;
     margin-top: 1.3rem;
+
+    .spinner-border {
+        position: absolute;
+        left: 30rem;
+        top: 4rem;
+    }
 }
