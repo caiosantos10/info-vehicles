@@ -1,10 +1,7 @@
+<h1>Veículos</h1>
+<div class="shadow-line"></div>
 <div class="vehicles-list">
-    <app-table
-        [items]="vehicles"
-        [columns]="attributes"
-        (delete)="deleteVehicle($event)"
-        (edit)="editVehicle($event)"
-    >
+    <app-table [items]="vehicles" [columns]="attributes" (delete)="deleteVehicle($event)" (edit)="editVehicle($event)">
         <p class="empty-message">Não há nenhum veículo cadastrado</p>
     </app-table>
 </div>
